@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Blog</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            width: 100%;
+            height: 100vh;
+            background: url('bg-img.jpeg') no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .logo img {
+            width: 45px;
+            border-radius: 50%;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-left: 15px;
+            display: none;
+        }
+        
+        .sidebar {
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 110px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(17px);
+            -webkit-backdrop-filter: blur(17px);
+            border-right: 1px solid rgba(255, 255, 255, 0.6);
+            transition: width 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar:hover {
+            width: 268px;
+        }
+        
+        .sidebar .logo {
+            display: flex;
+            align-items: center;
+            padding: 25px 10px 15px;
+        }
+        
+        .sidebar:hover .logo h2 {
+            display: block;
+            font-weight: 600;
+            margin-left: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .sidebar:hover .links h4 {
+            display: block;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .sidebar ul li a img,
+        .sidebar ul li a i {
+            margin-right: 10px;
+            display: block;
+        }
+        
+        .sidebar .links img {
+            width: 20px;
+        }
+        
+        .sidebar .links li {
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .sidebar .links li:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .sidebar .links li a span {
+            display: none;
+        }
+        
+        .sidebar:hover .links li a span {
+            display: inline;
+        }
+        
+        .sidebar .links {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .sidebar .links li a {
+            color: #000;
+            padding: 10px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            align-items: center;
+            text-align: center;
+            margin-left: 750px;
+            margin-top: 50px;
+        }
+        
+        .upload {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .upload h2 {
+            margin-bottom: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+        
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        
+        .blog-list {
+            margin-top: 20px;
+        }
+        
+        .blog-item {
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .blog-item img {
+            max-width: 50px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .blog-item button {
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .blog-item button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="unnamed.jpg" alt="profile">
+            <h2>Aarush Prakash</h2>
+        </div>
+        <ul class="links">
+            <li>
+                <a href="index.html"><img src="information.png" alt="About"><span>About</span></a>
+            </li>
+            <li>
+                <a href="profitol.html"><img src="work.png" alt="Portfolio"><span>Portfolio</span></a>
+            </li>
+            <li>
+                <a href="blog.html"><img src="info.png" alt="Blog"><span>Blog</span></a>
+            </li>
+            <li>
+                <a href="designer.html"><img src="Designer.png" alt="Designer"><span>Designer</span></a>
+            </li>
+            <li>
+                <a href="developer.html"><img src="Developer.png" alt="Developer"><span>Developer</span></a>
+            </li>
+            <li>
+                <a href="services.html"><img src="services.png" alt="Services"><span>Services</span></a>
+            </li>
+            <li>
+                <a href="social.html"><img src="social.png" alt="Social"><span>Social</span></a>
+            </li>
+            <li>
+                <a href="cv.html"><img src="cv.png" alt="CV"><span>CV</span></a>
+            </li>
+            <li>
+                <a href="achievements.html"><img src="trophy.png" alt="Achievements"><span>Achievements</span></a>
+            </li>
+            <li>
+                <a href="education.html"><img src="education.png" alt="Education"><span>Education</span></a>
+            </li>
+            <li>
+                <a href="contact.html"><i class='bx bx-chat'></i><span>Message</span></a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="container">
+        <div class="upload">
+            <h2>Upload Blog</h2>
+        </div>
+        <form id="blogForm">
+            <div class="form-group">
+                <label for="blogImage">Image</label>
+                <input type="file" id="blogImage" accept="image/*">
+            </div>
+            <div class="form-group">
+                <label for="blogTitle">Title</label>
+                <input type="text" id="blogTitle" placeholder="Enter blog title">
+            </div>
+            <div class="form-group">
+                <label for="blogContent">Blog Content</label>
+                <textarea id="blogContent" placeholder="Write your blog content"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="button" onclick="submitBlog()">Submit</button>
+            </div>
+        </form>
+        <div class="blog-list" id="blogList"></div>
+    </div>
+
+    <script>
+        let blogSerialNumber = 1;
+
+        function submitBlog() {
+            const blogImage = document.getElementById('blogImage').files[0];
+            const blogTitle = document.getElementById('blogTitle').value;
+            const blogContent = document.getElementById('blogContent').value;
+
+            if (blogImage && blogTitle && blogContent) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const blog = {
+                        title: blogTitle,
+                        content: blogContent,
+                        image: e.target.result
+                    };
+
+                    let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+                    blogs.push(blog);
+                    localStorage.setItem('blogs', JSON.stringify(blogs));
+
+                    displayBlogs();
+                }
+                reader.readAsDataURL(blogImage);
+            } else {
+                alert('Please fill out all fields and select an image.');
+            }
+        }
+
+        function displayBlogs() {
+            const blogList = document.getElementById('blogList');
+            blogList.innerHTML = '';
+
+            let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+            blogs.forEach((blog, index) => {
+                const blogItem = document.createElement('div');
+                blogItem.className = 'blog-item';
+                blogItem.innerHTML = `
+                    <div>
+                        <strong>${index + 1}. ${blog.title}</strong>
+                        <img src="${blog.image}" alt="Blog Image">
+                        <p>${blog.content}</p>
+                    </div>
+                    <button onclick="removeBlog(${index})">Remove</button>
+                `;
+                blogList.appendChild(blogItem);
+            });
+        }
+
+        function removeBlog(index) {
+            let blogs = JSON.parse(localStorage.getItem('blogs')) || [];
+            blogs.splice(index, 1);
+            localStorage.setItem('blogs', JSON.stringify(blogs));
+            displayBlogs();
+        }
+
+        window.onload = displayBlogs;
+    </script>
+</body>
+
+</html>

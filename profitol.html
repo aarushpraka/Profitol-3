@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profitol</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            width: 100%;
+            height: 100vh;
+            background: url('bg-img.jpeg');
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .logo img {
+            width: 45px;
+            border-radius: 50%;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-left: 15px;
+            display: none;
+        }
+        
+        .sidebar {
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 110px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(17px);
+            -webkit-backdrop-filter: blur(17px);
+            border-right: 1px solid rgba(255, 255, 255, 0.6);
+            transition: width 0.3s ease;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sidebar:hover {
+            width: 268px;
+        }
+        
+        .sidebar .logo {
+            display: flex;
+            align-items: center;
+            padding: 25px 10px 15px;
+        }
+        
+        .sidebar:hover .logo h2 {
+            display: block;
+            font-weight: 600;
+            margin-left: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .sidebar:hover .links h4 {
+            display: block;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 20px;
+            flex-grow: 1;
+        }
+        
+        .sidebar ul li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .sidebar ul li a img,
+        .sidebar ul li a i {
+            margin-right: 10px;
+            display: block;
+        }
+        
+        .sidebar .links img {
+            width: 20px;
+        }
+        
+        .sidebar .links li {
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .sidebar .links li:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .sidebar .links li a span {
+            display: none;
+        }
+        
+        .sidebar:hover .links li a span {
+            display: inline;
+        }
+        
+        .sidebar .links {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .sidebar .links li a {
+            color: #000;
+            padding: 10px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 250px 200px;
+            max-width: 1550px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+        
+        .container h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .projects img {
+            width: 200px;
+            height: 150px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .projects img:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .projects span {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .logo img {
+                width: 35px;
+            }
+            .sidebar {
+                width: 40px;
+            }
+            .about {
+                width: 380px;
+            }
+            .about h1 {
+                font-size: 25px;
+            }
+            .container {
+                width: 300px;
+                margin-top: 80px;
+                margin-left: 120px;
+                margin-right: 120px;
+                align-items: center;
+            }
+            .container img {
+                margin-left: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="unnamed.jpg" alt="profile">
+            <h2>Aarush Prakash</h2>
+        </div>
+        <ul class="links">
+            <li>
+                <a href="index.html"><img src="information.png" alt="About"><span>About</span></a>
+            </li>
+            <li>
+                <a href="profitol.html"><img src="work.png" alt="Portfolio"><span>Portfolio</span></a>
+            </li>
+            <li>
+                <a href="blog.html"><img src="info.png" alt="Blog"><span>Blog</span></a>
+            </li>
+            <li>
+                <a href="designer.html"><img src="Designer.png" alt="Designer"><span>Designer</span></a>
+            </li>
+            <li>
+                <a href="developer.html"><img src="Developer.png" alt="Developer"><span>Developer</span></a>
+            </li>
+            <li>
+                <a href="services.html"><img src="services.png" alt="Services"><span>Services</span></a>
+            </li>
+            <li>
+                <a href="social.html"><img src="social.png" alt="Social"><span>Social</span></a>
+            </li>
+            <li>
+                <a href="cv.html"><img src="cv.png" alt="CV"><span>CV</span></a>
+            </li>
+            <li>
+                <a href="achievements.html"><img src="trophy.png" alt="Achievements"><span>Achievements</span></a>
+            </li>
+            <li>
+                <a href="education.html"><img src="education.png" alt="Education"><span>Education</span></a>
+            </li>
+            <li>
+                <a href="contact.html"><i class='bx bx-chat'></i><span>Message</span></a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="container">
+        <h2>Projects</h2>
+        <div class="projects">
+            <div>
+                <img src="pj1.jpg" alt="Profile website">
+                <span>Profile website</span>
+            </div>
+            <div>
+                <img src="pj2.jpg" alt="Project 2">
+                <span>Project 2</span>
+            </div>
+            <div>
+                <img src="pj3.png" alt="Project 3">
+                <span>Project 3</span>
+            </div>
+            <div>
+                <img src="pj4.png" alt="Project 4">
+                <span>Project 4</span>
+            </div>
+            <div>
+                <img src="pj5.png" alt="Project 5">
+                <span>Project 5</span>
+            </div>
+            <div>
+                <img src="pj6.png" alt="Project 6">
+                <span>Project 6</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
